@@ -15,12 +15,10 @@ This Food Recipe App is built using Flutter and allows users to browse recipes b
 
 ## Screenshots
 
-![Category Browsing](![Screenshot_1718723987](https://github.com/subashghimirey/Food-Recipe-App/assets/88834868/8380a837-9570-40d3-a1f5-9136c3de32ec)
-)
-![Favorite Meals](![Screenshot_1718723991](https://github.com/subashghimirey/Food-Recipe-App/assets/88834868/fdebbfab-87b5-458b-bde6-7276c371f50d)
-)
-![Filters](![Screenshot_1718723998](https://github.com/subashghimirey/Food-Recipe-App/assets/88834868/5578366c-ec46-4126-94f3-d4ce1fb1c4de)
-)
+![Category Browsing](https://github.com/subashghimirey/Food-Recipe-App/assets/88834868/8380a837-9570-40d3-a1f5-9136c3de32ec)
+![Favorite Meals](https://github.com/subashghimirey/Food-Recipe-App/assets/88834868/fdebbfab-87b5-458b-bde6-7276c371f50d)
+![Filters](https://github.com/subashghimirey/Food-Recipe-App/assets/88834868/5578366c-ec46-4126-94f3-d4ce1fb1c4de)
+
 
 ## Video Demo
 
