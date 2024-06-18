@@ -1,4 +1,4 @@
-![Screenshot_1718723987](https://github.com/subashghimirey/Food-Recipe-App/assets/88834868/0da5e4ef-bb2d-413f-9034-ab6a752dabc2)# Food Recipe App
+# Food Recipe App
 
 ## Overview
 
