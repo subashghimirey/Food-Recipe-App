@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:meals/data/dummy_data.dart';
 
 import 'package:meals/screens/categories_screen.dart';
 import 'package:meals/screens/filters_screen.dart';
 import 'package:meals/screens/meals_screen.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/widgets/my_drawer.dart';
+
+final kInitialFilters = {
+  Filter.glutenFree: false,
+  Filter.lactoseFree: false,
+  Filter.vegetarian: false,
+  Filter.vegan: false,
+};
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -16,6 +24,8 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+  Map<Filter, bool> _selectedFilterOptions = kInitialFilters;
+
   int _currentPageIndex = 0;
 
   void _selectPage(var index) {
@@ -46,22 +56,52 @@ class _TabsScreenState extends State<TabsScreen> {
       });
       showFavMessage("Added to Favorite");
     }
-    
   }
 
-  void onSelectMenuItem(String identifier) {
+  //we can get teh values returned by pop of the filter screen here in the push of FilterScreen
+  void onSelectMenuItem(String identifier) async {
     Navigator.pop(context);
+
     if (identifier == "filter") {
-      Navigator.push(context, MaterialPageRoute(builder: (ctx) {
-        return const FiltersScreen();
+      final result = await Navigator.of(context)
+          .push<Map<Filter, bool>>(MaterialPageRoute(builder: (ctx) {
+        return FiltersScreen(selectedFilters: _selectedFilterOptions,);
       }));
-    } 
+
+      print(result);
+      setState(() {
+      _selectedFilterOptions = result ?? kInitialFilters;
+        
+           //if the result is somehow null then, the initial filter values i.e. false to all are set
+      });
+
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final availableMeals = dummyMeals.where(
+      (meal) {
+        if (_selectedFilterOptions[Filter.glutenFree]! && !meal.isGlutenFree) {
+          return false;
+        }
+        if (_selectedFilterOptions[Filter.lactoseFree]! &&
+            !meal.isLactoseFree) {
+          return false;
+        }
+        if (_selectedFilterOptions[Filter.vegetarian]! && !meal.isVegetarian) {
+          return false;
+        }
+        if (_selectedFilterOptions[Filter.vegan]! && !meal.isVegan) {
+          return false;
+        }
+        return true;
+      },
+    ).toList();
+
     Widget activeScreen = CategoriesScreen(
       onToggleFavorite: _toggleFavoriteFood,
+      availableMeals: availableMeals,
     );
     var activeTitle = "Categories";
 
